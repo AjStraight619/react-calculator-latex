@@ -8,3 +8,5 @@ export { useCalculator } from './hooks/useCalculator';
 
 // Exporting the CalculatorContent component
 export { default as CalculatorContent } from './components/calculator-content';
+
+export { default as CulculatorDisplay } from './components/calculator-display';
