@@ -30,11 +30,9 @@ export type Calculator = {
   inputRef: React.RefObject<HTMLInputElement>;
 };
 
-
 export type CalculatorDisplayProps = {
-  expression: string
-}
-
+  expression: string;
+};
 
 export type CalculatorContentProps = {
   calculator: Calculator;
