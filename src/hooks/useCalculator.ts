@@ -1,10 +1,9 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { Calculator, CalculatorOptions } from "../lib/types";
 
-
 /**
  * Custom hook to create and manage a calculator instance.
- * 
+ *
  * @param {CalculatorOptions} [options] - Configuration options for the calculator.
  * @returns {Calculator} An object with calculator functionality.
  */
@@ -20,12 +19,15 @@ export const useCalculator = (options?: CalculatorOptions): Calculator => {
   >([{ expression, result }]);
   const [currentHistoryIndex, setCurrentHistoryIndex] = useState<number>(0);
 
-  const updateHistory = useCallback((newExpression: string, newResult: string) => {
-    const newHistory = history.slice(0, currentHistoryIndex + 1);
-    newHistory.push({ expression: newExpression, result: newResult });
-    setHistory(newHistory);
-    setCurrentHistoryIndex(newHistory.length - 1);
-  },[currentHistoryIndex, history] );
+  const updateHistory = useCallback(
+    (newExpression: string, newResult: string) => {
+      const newHistory = history.slice(0, currentHistoryIndex + 1);
+      newHistory.push({ expression: newExpression, result: newResult });
+      setHistory(newHistory);
+      setCurrentHistoryIndex(newHistory.length - 1);
+    },
+    [currentHistoryIndex, history]
+  );
 
   // const setCursorPosition = (
   //   inputElementRef: React.RefObject<HTMLInputElement>,
@@ -136,7 +138,7 @@ export const useCalculator = (options?: CalculatorOptions): Calculator => {
 
   useEffect(() => {
     options?.onUpdate?.({ calculator });
-  }, [calculator, options]);
+  }, [calculator.expression, options]);
 
   return calculator;
 };
