@@ -2,6 +2,8 @@ import { useState } from "react";
 import CalculatorContent from "./components/calculator-content";
 import { useCalculator } from "./hooks/useCalculator";
 import CalculatorButtons from "./test/test-components";
+import CalculatorDisplay from "./components/calculator-display";
+import Test from "./components/test";
 
 function App() {
   const [content, setContent] = useState("");
@@ -15,12 +17,13 @@ function App() {
     },
   });
 
-  console.log(content)
+  console.log(content);
 
   return (
     <main className="min-h-screen flex items-center justify-center">
       <div className="min-w-[20rem] flex flex-col items-center justify-center p-2 border border-black">
         <CalculatorContent calculator={calculator} />
+        <CalculatorDisplay expression={calculator.expression} />
         <CalculatorButtons calculator={calculator} />
       </div>
     </main>

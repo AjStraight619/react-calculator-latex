@@ -1,6 +1,5 @@
 import React from "react";
-import {  CalculatorContentProps } from "../lib/types";
-
+import { CalculatorContentProps } from "../lib/types";
 
 /**
  * A React component that renders the calculator input and integrates core functionality.

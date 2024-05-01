@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { Calculator, CalculatorOptions } from "../lib/types";
+import { getErrorMessage } from "../lib/utils";
 
 /**
  * Custom hook to create and manage a calculator instance.
@@ -95,9 +96,9 @@ export const useCalculator = (options?: CalculatorOptions): Calculator => {
           updateHistory(expression, newResult);
           options?.onCalculate?.(newResult);
         } catch (error: unknown) {
-          // console.error("Calculation error:", error);
-          // setResult("Error");
-          // options?.onError?.(error.toString());
+          console.error("Calculation error:", error);
+          setResult("Error");
+          options?.onError?.(getErrorMessage(error));
         }
         return calculator;
       },
@@ -133,7 +134,7 @@ export const useCalculator = (options?: CalculatorOptions): Calculator => {
       },
       autoCursorPosition: options?.autoCursorPosition ?? false,
     }),
-    [expression, result, history, currentHistoryIndex, options, updateHistory]
+    [result, history, currentHistoryIndex, updateHistory]
   );
 
   useEffect(() => {
